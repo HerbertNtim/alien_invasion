@@ -10,7 +10,8 @@ class Alien(Sprite):
     self.screen = ai_game.screen
     
     # Load the alien image and set its rect attribute
-    self.image = pygame.image.load("images/spaceship.png")
+    self.image = pygame.image.load("images/spaceship.png").convert_alpha()
+    self.image = pygame.transform.scale(self.image, (80, 60))
     self.rect = self.image.get_rect()
     
     # Start each new alien near the top of the screen.
