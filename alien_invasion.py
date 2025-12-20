@@ -33,6 +33,7 @@ class AlienInvasion:
       self._check_events()
       self.ship.update()
       self._update_bullets()
+      self._update_aliens()
       
       # Get rid of bullets that have disappeared.
       for bullet in self.bullets.copy():
@@ -127,6 +128,10 @@ class AlienInvasion:
     self.aliens.draw(self.screen)
     # Make the most recently drawn screen visible.
     pygame.display.flip()
+    
+  def _update_aliens(self):
+    """Update the positions of all aliens in the fleet."""
+    self.aliens.update()
 
 if __name__ == '__main__':
   # Make a game instance, and run the game.
