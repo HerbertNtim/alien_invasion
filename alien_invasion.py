@@ -136,6 +136,10 @@ class AlienInvasion:
     """Update position of bullets and get rid of old bullets."""
     # Update bullet positions.
     self.bullets.update()
+    
+    # Check for any bullets that have hit aliens.
+    # If so get rid of the bullet and the alien
+    collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
   def _update_screen(self):
     # Redraw the screen during each pass through the loop.
