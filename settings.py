@@ -8,7 +8,7 @@ class Settings:
     self.bg_color = (128, 128, 128)
     
     # Bullet Settings
-    self.bullet_speed = 1.0
+    self.bullet_speed = 1.5
     self.bullet_width = 3
     self.bullet_height = 15
     self.bullet_color = (0, 0, 0)
@@ -18,7 +18,7 @@ class Settings:
     self.ship_speed = 1.5
     
     # Alien Settings
-    self.alien_speed =  1.0
+    self.alien_speed =  0.3
     self.fleet_drop_speed = 10
     # Fleet direction of 1 represents right; -1 represent left.
     self.fleet_direction = 1
