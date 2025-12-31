@@ -41,13 +41,11 @@ class AlienInvasion:
       if self.stats.game_active:
         self.ship.update()
         self._update_bullets()
-        self._update_aliens()
-      
+        self._update_aliens()   
       # Get rid of bullets that have disappeared.
       for bullet in self.bullets.copy():
         if bullet.rect.bottom <= 0:
           self.bullets.remove(bullet)
-    
       self._update_screen()
       
   def _create_fleet(self):
@@ -57,13 +55,11 @@ class AlienInvasion:
     alien = Alien(self)
     alien_width, alien_height = alien.rect.size
     available_space_x = self.settings.screen_width - (2 * alien_width)
-    number_aliens_x = available_space_x // (2 * alien_width)
-    
+    number_aliens_x = available_space_x // (2 * alien_width)  
     # Determine the number of rows of aliens that fit on the screen.
     ship_height = self.ship.rect.height
     available_space_y = (self.settings.screen_height - (3 * alien_height) - ship_height)
     number_rows = available_space_y // (2 * alien_height)
-    
     # Create the full fleet of aliens.
     for row_number in range(number_rows):
       for alien_number in range(number_aliens_x):
@@ -126,6 +122,7 @@ class AlienInvasion:
       self.stats.game_active = True
       self.sb.prep_score()
       self.sb.prep_level()
+      self.sb.prep_ships()
       # Get rid of any remaining aliens and bullets.
       self.aliens.empty()
       self.bullets.empty()
@@ -201,8 +198,9 @@ class AlienInvasion:
   def _ship_hit(self):
     """Respond to the ship being hit by an alien."""
     if self.stats.ships_left > 0:
-      # Decrement ships left.
+      # Decrement ships left, and update scoreboard.
       self.stats.ships_left -= 1
+      self.sb.prep_ships()
       # Get rid of any remaining aliens and bullets.
       self.aliens.empty()
       self.bullets.empty()
