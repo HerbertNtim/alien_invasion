@@ -9,6 +9,7 @@ from alien import Alien
 from game_stats import GameStats
 from button import Button
 from scoreboard import ScoreBoard
+from star import Star
 
 class AlienInvasion:
   """Overall Class to manage game assets and behavior."""
@@ -27,7 +28,9 @@ class AlienInvasion:
     self.ship = Ship(self)
     self.bullets = pygame.sprite.Group()
     self.aliens = pygame.sprite.Group()
+    self.stars = pygame.sprite.Group()
     self._create_fleet()
+    self._create_stars()
     # Make the Play button.
     self.play_button = Button(self, "PLAY")
     # Set the background color.
@@ -47,6 +50,12 @@ class AlienInvasion:
         if bullet.rect.bottom <= 0:
           self.bullets.remove(bullet)
       self._update_screen()
+  
+  def _create_stars(self):
+        """Create the fleet of stars."""
+        # Make a star.
+        star = Star(self)
+        self.stars.add(star)
       
   def _create_fleet(self):
     """Create a fleet of aliens"""
@@ -229,6 +238,7 @@ class AlienInvasion:
     for bullet in self.bullets.sprites():
       bullet.draw_bullet()
     self.aliens.draw(self.screen)
+    self.stars.draw(self.screen)
     # Draw the score information.
     self.sb.show_score()
     # Draw the play button if the game is inactive.
